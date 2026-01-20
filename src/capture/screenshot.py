@@ -1,7 +1,12 @@
 """
 Screenshot capture functionality
 """
-import pyautogui
+try:
+    import pyautogui
+    PYAUTOGUI_AVAILABLE = True
+except ImportError:
+    PYAUTOGUI_AVAILABLE = False
+
 from PIL import Image
 from pathlib import Path
 from datetime import datetime
@@ -28,6 +33,8 @@ class ScreenshotCapture:
         Returns:
             PIL Image of the screen
         """
+        if not PYAUTOGUI_AVAILABLE:
+            raise ImportError("pyautogui is not installed. Install with: pip install pyautogui")
         screenshot = pyautogui.screenshot()
         return screenshot
 
@@ -44,6 +51,8 @@ class ScreenshotCapture:
         Returns:
             PIL Image of the region
         """
+        if not PYAUTOGUI_AVAILABLE:
+            raise ImportError("pyautogui is not installed. Install with: pip install pyautogui")
         screenshot = pyautogui.screenshot(region=(x, y, width, height))
         return screenshot
 

@@ -10,7 +10,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from src.config import Config
-from src.ui import create_gui
 
 
 def main():
@@ -22,9 +21,16 @@ def main():
         # Ensure directories exist
         Config.ensure_directories()
 
-        # Create and run GUI
-        gui = create_gui(Config)
-        gui.run()
+        # Try to use GUI, fallback to CLI
+        try:
+            from src.ui import create_gui
+            gui = create_gui(Config)
+            gui.run()
+        except (ImportError, Exception) as e:
+            # Fallback to CLI if GUI not available
+            from src.cli import create_cli
+            cli = create_cli(Config)
+            cli.run()
 
     except ValueError as e:
         print(f"\n❌ Configuration Error: {e}")
@@ -36,6 +42,8 @@ def main():
 
     except Exception as e:
         print(f"\n❌ Error: {e}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
 
 

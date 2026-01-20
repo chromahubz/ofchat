@@ -74,12 +74,13 @@ class OFChatGUI:
         )
         self.start_stop_btn.pack(side="left", padx=5)
 
-        # Screenshot Button
+        # Screenshot Button (disabled - requires additional packages)
         self.screenshot_btn = ttk.Button(
             control_frame,
-            text="Capture Screenshot",
+            text="Capture Screenshot (N/A)",
             command=self.capture_screenshot,
-            width=20
+            width=20,
+            state="disabled"
         )
         self.screenshot_btn.pack(side="left", padx=5)
 
