@@ -1,0 +1,19 @@
+# LLM API
+groq>=0.4.0
+
+# Image processing and capture
+pillow>=10.0.0
+pyautogui>=0.9.54
+
+# Clipboard operations
+pyperclip>=1.8.2
+
+# Keyboard/mouse monitoring
+pynput>=1.7.6
+
+# Configuration
+python-dotenv>=1.0.0
+
+# GUI
+tkinter-tooltip>=2.1.0
+# Note: tkinter comes with Python standard library
